@@ -1,24 +1,44 @@
 import {Link} from "react-router-dom"
 import {useState} from "react"
+import Card from "./components/layouts/Card"
 function App() {
   const [email,setEmail]=useState("")
   const [senha,setSenha]=useState("")
-  const [logado,setLogado]=useState(false)
+  const [msg,setMsg]=useState("")
+  const [tipoMsg,setTipoMsg]=useState("")
+  const [permitir,setPermitir]=useState(false)
+  const [mostrarCard,setMostrarCard]=useState(false)
+  const [cardId,setCardId]=useState(0)
   async function logar(e){
     e.preventDefault()
-    await fetch("https://backend-crud-react.onrender.com/api").then((response)=>response.json()).then((res)=>{
-      res.forEach((valor)=>{
-        if(!logado){
-        if(valor.senha==senha&&valor.email==email){
-          setLogado(true)
-        }else{
-          setLogado(false)
-        }
+    setCardId((e)=>e+1)
+    if(email.trim()==""||senha.trim()==""){
+      setMsg("Preencha email e senha")
+      setTipoMsg("warning")
+      setMostrarCard(false)
+      setTimeout(()=>{setMostrarCard(true)},0)
+      setPermitir(false)
+      return
+    }
+    await fetch("http://backend-crud-react.onrender.com/api",{
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json"
+      },
+      body:JSON.stringify({email:email,senha:senha})
+    }).then((response)=>response.json()).then((res)=>{
+      setMsg(res.msg)
+      setTipoMsg(res.tipo)
+      setMostrarCard(false)
+      setTimeout(()=>{setMostrarCard(true)},0)
+      if(res.tipo=="success"){
+        setPermitir(true)
+        setTimeout(()=>{
+          setMsg("Redirecionando...")
+        },1500)
       }
-      })
-      console.log(logado)
     })
-  }
+}
   return (
     <>
     <div className="position-absolute p-5 bg-dark w-100 h-100 text-light">
@@ -32,6 +52,9 @@ function App() {
         <Link to="/logar">Cadastrar</Link>
       </form>
     </div>
+    {mostrarCard&&(
+      <Card tipo={tipoMsg} msg={msg} caminho="/home" permitido={permitir} key={cardId}/>
+    )}
     </>
   )
 }

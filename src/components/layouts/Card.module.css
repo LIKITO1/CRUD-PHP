@@ -1,5 +1,5 @@
 .card{
-    top: 20dvh;
+    top: 10dvh;
     right:auto;
     left: 10%;
     animation: entrada ease 1s;
@@ -11,7 +11,7 @@
         opacity: 0;
     }
     to{
-        top: 20dvh;
+        top: 10dvh;
         opacity: 1;
     }
 }
