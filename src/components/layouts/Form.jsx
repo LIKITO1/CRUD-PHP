@@ -23,6 +23,7 @@ function FormUser({title,nomeBtn,acao,nomeE,emailE,senhaE,editTipoMsg,caminho}){
         await fetch(acao=="criar"?"https://backend-crud-react.onrender.com/create":`https://backend-crud-react.onrender.com/edit/${id}`,{
             method:acao=="criar"?"POST":"PUT",
             headers:{
+                autorizar:local.getItem("token"),
                 "Content-Type":"application/json"
             },body:JSON.stringify({nome:nome,email:email,senha:senha,tipo:tipo})
         }).then((response)=>response.json()).then((res)=>{

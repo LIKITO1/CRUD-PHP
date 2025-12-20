@@ -12,7 +12,11 @@ function Editar(){
     const [display,setDisplay]=useState("block")
     useEffect(()=>{
         async function requisitar(){
-        await fetch(`https://backend-crud-react.onrender.com/api/${id}`).then((response)=>response.json()).then((res)=>{
+        await fetch(`https://backend-crud-react.onrender.com/api/${id}`,{
+            headers:{
+                autorizar:local.getItem("token")
+            }
+        }).then((response)=>response.json()).then((res)=>{
             setNome(res[0].nome||"")
             setEmail(res[0].email||"")
             setSenha(res[0].senha||"")

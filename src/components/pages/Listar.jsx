@@ -8,7 +8,8 @@ function Listar(){
     async function requisitar(){
         await fetch("https://backend-crud-react.onrender.com/api",{
             headers:{
-                "Conten-type":"application/json"
+                autorizar:local.getItem("token"),
+                "Content-type":"application/json"
             },method:"GET"
         }).then((res)=>res.json()).then((results)=>{
             setDados(results)

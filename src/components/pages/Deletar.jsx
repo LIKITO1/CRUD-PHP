@@ -15,6 +15,7 @@ function Deletar(){
             await fetch(`https://backend-crud-react.onrender.com/delete/${id}`,{
                 method:"DELETE",
                 headers:{
+                    autorizar:local.getItem("token"),
                     "Content-Type":"application/json"
                 }
             }).then((response)=>response.json()).then((res)=>{

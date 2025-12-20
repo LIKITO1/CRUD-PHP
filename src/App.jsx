@@ -9,20 +9,14 @@ function App() {
   const [permitir,setPermitir]=useState(false)
   const [mostrarCard,setMostrarCard]=useState(false)
   const [cardId,setCardId]=useState(0)
+  const local=localStorage
   async function logar(e){
     e.preventDefault()
     setCardId((e)=>e+1)
-    if(email.trim()==""||senha.trim()==""){
-      setMsg("Preencha email e senha")
-      setTipoMsg("warning")
-      setMostrarCard(false)
-      setTimeout(()=>{setMostrarCard(true)},0)
-      setPermitir(false)
-      return
-    }
-    await fetch("https://backend-crud-react.onrender.com/api",{
+    await fetch("https://backend-crud-react.onrender.com/login",{
       method:"POST",
       headers:{
+        autorizar:local.getItem("token"),
         "Content-Type":"application/json"
       },
       body:JSON.stringify({email:email,senha:senha})
@@ -30,6 +24,8 @@ function App() {
       setMsg(res.msg)
       setTipoMsg(res.tipo)
       setMostrarCard(false)
+      console.log(res.token)
+      local.setItem("token",res.token)
       setTimeout(()=>{setMostrarCard(true)},0)
       if(res.tipo=="success"){
         setPermitir(true)
