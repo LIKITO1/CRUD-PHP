@@ -11,7 +11,7 @@ function FormUser({title,nomeBtn,acao,nomeE,emailE,senhaE,editTipoMsg,caminho}){
     const [tipoMsg,setTipoMsg]=useState("")
     const [msg,setMsg]=useState("")
     const [display,setDisplay]=useState("block")
-    const [mostraId,setMostraId]=useState("")
+    const [permitir,setPermitir]=useState(false)
     const local=localStorage
     useEffect(()=>{
         setNome(nomeE ||"")
@@ -25,13 +25,19 @@ function FormUser({title,nomeBtn,acao,nomeE,emailE,senhaE,editTipoMsg,caminho}){
         await fetch(acao=="criar"?"https://backend-crud-react.onrender.com/create":`https://backend-crud-react.onrender.com/edit/${id}`,{
             method:acao=="criar"?"POST":"PUT",
             headers:{
-                authorization:local.getItem("token"),
-                "Content-Type":"application/json"
+                "Content-Type":"application/json",
+                authorization:"Bearer "+local.getItem("token")
             },body:JSON.stringify({nome,email,senha,tipo})
         }).then((response)=>response.json()).then((res)=>{
             setMsg(res.msg)
             setTipoMsg(res.tipo)
             setDisplay("none")
+            if(res.tipo=="success"){
+                setPermitir(true)
+                setTimeout(()=>{
+                  setMsg("Redirecionando...")
+                },1500)
+              }
         })
     }
     async function reset(e){
@@ -39,7 +45,7 @@ function FormUser({title,nomeBtn,acao,nomeE,emailE,senhaE,editTipoMsg,caminho}){
         await fetch(`https://backend-crud-react.onrender.com/reset/${id}`,{
             headers:{
                 "Content-Type":"application/json",
-                authorization:local.getItem("token")
+                authorization:"Bearer "+local.getItem("token")
             }
         }).then((response)=>response.json()).then((valor)=>{
             setMsg(valor.msg)
@@ -66,14 +72,18 @@ function FormUser({title,nomeBtn,acao,nomeE,emailE,senhaE,editTipoMsg,caminho}){
                 </select>
             </>
             )}
+            {acao&&acao!="criar"&&(
+                <>
             <label>Senha:</label>
             <button className="btn btn-danger" onClick={reset}>Resetar senha</button>
             <button className="btn btn-success" onClick={enviar}>{nomeBtn}</button>
+            </>
+            )}
         </form>
         {msg!==""&&tipoMsg!==""&&(
             <>
             <Loading sumir={display}/>
-            <Card tipo={tipoMsg!==""?tipoMsg:editTipoMsg} msg={msg} caminho={caminho}/>
+            <Card tipo={tipoMsg!==""?tipoMsg:editTipoMsg} msg={msg} caminho={caminho} permitido={permitir}/>
             </>
         )}
         </>

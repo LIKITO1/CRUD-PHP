@@ -15,7 +15,7 @@ function Editar(){
         async function requisitar(){
         await fetch(`https://backend-crud-react.onrender.com/api/${id}`,{
             headers:{
-                autorizar:local.getItem("token")
+                authorization:"Bearer "+local.getItem("token")
             }
         }).then((response)=>response.json()).then((res)=>{
             setNome(res[0].nome||"")
