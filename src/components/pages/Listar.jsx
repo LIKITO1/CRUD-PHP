@@ -5,12 +5,11 @@ import Loading from "../layouts/Loading.jsx"
 function Listar(){
     const [dados,setDados]=useState([])
     const [display,setDisplay]=useState("block")
-    const local=localStorage;
     async function requisitar(){
         await fetch("https://backend-crud-react.onrender.com/api",{
             headers:{
-                authorization:"Bearer "+local.getItem("token"),
-                "Content-type":"application/json"
+                "Content-type":"application/json",
+                authorization:"Bearer "+localStorage.getItem("token")
             },method:"GET"
         }).then((res)=>res.json()).then((results)=>{
             setDados(results)

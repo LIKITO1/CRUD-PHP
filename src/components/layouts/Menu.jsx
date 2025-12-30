@@ -1,6 +1,7 @@
 import {Link} from "react-router-dom"
 import styles from "./Menu.module.css"
-function Menu(){
+function Menu({user}){
+    user=localStorage.getItem("tipo")
     return(
         <>
         <div className={`d-flex bg-dark gap-2 align-items-center justify-content-center d-sm-none`}>
@@ -21,6 +22,8 @@ function Menu(){
                 <div className="bi bi-house fs-1"></div>
                 <small className={`${styles.texto}`}>Home</small>
             </Link>
+            {user&&user=="admin"&&(
+            <>
             <Link to={"/create"} className={`${styles.link} text-light text-center p-3 fs-5`}>
             <div className="bi bi-plus-circle fs-1"></div>
             <small className={`${styles.texto}`}>Criar Usuário</small>
@@ -29,6 +32,8 @@ function Menu(){
             <div className="bi bi-list-task fs-1"></div>
             <small className={`${styles.texto}`}>Listar usuários</small>
             </Link>
+            </>
+            )}
             <Link to={"/perfil"} className={`${styles.link} text-light text-center p-3 fs-5`}>
             <div className="bi bi-person fs-1"></div>
             <small className={`${styles.texto}`}>Perfil</small>
