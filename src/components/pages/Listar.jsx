@@ -37,6 +37,7 @@ function Listar(){
                     <th>Tipo</th>
                     <th>Editar</th>
                     <th>Apagar</th>
+                    <th>Privilégio</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -48,6 +49,7 @@ function Listar(){
                             <td>{valor.tipo}</td>
                             <td><Link to={`/edit/${valor.id}`}>Editar</Link></td>
                             <td><Link to={`/delete/${valor.id}`}>Apagar</Link></td>
+                            <td><Link to={`/privilegio/${valor.id}`}>Elevar/Reduzir</Link></td>
                         </tr>
                     ))}
                 </tbody>

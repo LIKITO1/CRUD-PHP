@@ -18,7 +18,7 @@ function App() {
     setMostrarCard(false)
     setTimeout(()=>{
     setCardId((e)=>e+1)
-    setMsg("A primeira requisição do dia pode demorar. Aguarde...")
+    setMsg("A primeira tentativa do dia pode demorar. Aguarde...")
     setTipoMsg("light")
     setPermitir(false)
     setMostrarCard(true)
