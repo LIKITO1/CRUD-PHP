@@ -8,6 +8,9 @@
     opacity:1;
     animation:animaText ease 1s alternate;
 }
+span:hover{
+    cursor:pointer;
+}
 @keyframes animaText{
     from{
         opacity: 0;

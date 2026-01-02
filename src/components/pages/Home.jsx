@@ -24,7 +24,15 @@ function Home(){
         <Menu/>
             <div className="container d-flex align-items-center justify-content-center flex-column p-4">
                 <h3 className="mb-5">Bem Vindo à página principal , <span className="text-capitalize">{user}</span></h3>
-                <p className="w-75">Seja muito bem-vindo(a)! Esta é a sua central de gerenciamento, onde você tem o controle total sobre seus registros. Aqui você pode criar, visualizar, editar e excluir informações de forma simples, rápida e segura. Navegue com facilidade e aproveite todas as ferramentas para organizar seus dados com eficiência.</p>
+                <p className="w-75">É um prazer ter você aqui.
+                Esta aplicação foi desenvolvida para oferecer uma experiência simples, segura e eficiente no gerenciamento das suas informações.&nbsp;Aqui você pode:</p>
+                <ul>
+                <li>Visualizar seus dados pessoais</li>
+                <li>Manter seu perfil sempre atualizado</li>
+                <li>Navegar com segurança em um ambiente protegido</li>
+                </ul>
+                <p className="w-75">Cada usuário possui acesso apenas às funcionalidades permitidas para o seu perfil, garantindo privacidade, organização e confiabilidade em todas as operações.Caso tenha dúvidas ou precise de suporte, fique à vontade para entrar em contato.
+                Esperamos que sua experiência seja produtiva e agradável.</p>
             </div>
         </>
     )

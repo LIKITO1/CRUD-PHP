@@ -7,7 +7,6 @@ function FormUser({title,nomeBtn,acao,nomeE,emailE,senhaE,editTipoMsg,caminho,w,
     const [nome,setNome]=useState("")
     const [email,setEmail]=useState("")
     const [senha,setSenha]=useState("")
-    const [tipo,setTipo]=useState("")
     const [tipoMsg,setTipoMsg]=useState("")
     const [msg,setMsg]=useState("")
     const [display,setDisplay]=useState("block")
@@ -29,13 +28,13 @@ function FormUser({title,nomeBtn,acao,nomeE,emailE,senhaE,editTipoMsg,caminho,w,
         setMsg("")
         setTipoMsg("")
         if(acao=="criar"||acao=="cadastrar"){
-            if(nome!=""&&senha!=""&&email!=""&&tipo){
+            if(nome!=""&&senha!=""&&email!=""){
         await fetch("https://backend-crud-react.onrender.com/create",{
             method:"POST",
             headers:{
                 "Content-Type":"application/json",
                 authorization:"Bearer "+localStorage.getItem("token")
-            },body:JSON.stringify({nome,email,senha,tipo})
+            },body:JSON.stringify({nome,email,senha})
         }).then((response)=>response.json()).then((res)=>{
             setMsg(res.msg)
             setTipoMsg(res.tipo)
@@ -65,7 +64,7 @@ function FormUser({title,nomeBtn,acao,nomeE,emailE,senhaE,editTipoMsg,caminho,w,
         headers:{
             "Content-Type":"application/json",
             authorization:"Bearer "+localStorage.getItem("token")
-        },body:JSON.stringify({nome,email,senha,tipo})
+        },body:JSON.stringify({nome,email,senha})
     }).then((response)=>response.json()).then((res)=>{
         setMsg(res.msg)
         setTipoMsg(res.tipo)
@@ -103,12 +102,6 @@ function FormUser({title,nomeBtn,acao,nomeE,emailE,senhaE,editTipoMsg,caminho,w,
                 <>
                 <label htmlFor="">Senha:</label>
                 <input type="password" placeholder="Senha..." className={`form-control w-${w}`} onChange={(e)=>{setSenha(e.target.value)}} value={senha} required/>
-                <label htmlFor="">Tipo:</label>
-                <select className={`form-select w-${w} w-sm-50`} onChange={(e)=>{setTipo(e.target.value)}} required>
-                    <option selected disabled>Selecione o tipo de usuário</option>
-                    <option value="admin">Administrador</option>
-                    <option value="user">Usuário</option>
-                </select>
             </>
             )}
             {acao&&(acao!="criar"&&acao!="cadastrar")&&(

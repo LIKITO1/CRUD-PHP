@@ -1,11 +1,22 @@
 import Menu from "../layouts/Menu"
 import {useState,useEffect} from "react"
+import {useNavigate} from "react-router-dom"
 import Loading from "../layouts/Loading"
 function Perfil(){
     const [nome,setNome]=useState("")
     const [email,setEmail]=useState("")
     const [sumir,setSumir]=useState("flex")
     const [tipo,setTipo]=useState("")
+    const navigate=useNavigate("")
+    function editar(){
+        const id=localStorage.getItem("id_usuario")
+        navigate(`/editDados/${id}`,{
+            state:{
+                nome:nome,
+                email:email
+            }
+        })
+    }
     useEffect(()=>{
         async function requisitar(){
             await fetch("https://backend-crud-react.onrender.com/api",{
@@ -37,6 +48,7 @@ function Perfil(){
             <p className="fs-4">Nome:{nome}</p>
             <p className="fs-4">Email:{email}</p>
             <p className="fs-4">Tipo de usuário:{tipo}</p>
+            <button onClick={editar} className="btn btn-success bi bi-pencil">&nbsp;Editar dados</button>
         </div>
         </>
     )
