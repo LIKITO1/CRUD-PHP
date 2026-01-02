@@ -14,12 +14,20 @@ import EditDados from "./components/pages/EditDados.jsx"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "bootstrap-icons/font/bootstrap-icons.css";
 import {BrowserRouter as Router,Routes,Route} from "react-router-dom"
+function NotFound(){
+  return(
+    <>
+      Rota não encontrada
+    </>
+  )
+}
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Router>
       <Routes>
         <Route element={<App/>} path='/'></Route>
         <Route element={<Cadastrar/>} path="/cadastrar"></Route>
+        <Route element={<NotFound/>} path="*"></Route>
         <Route element={<PrivateRoute/>}>
         <Route element={<Criar/>} path='/create'></Route>
         <Route element={<Home/>} path='/home'></Route>
