@@ -3,14 +3,15 @@ import {useNavigate,useLocation} from "react-router-dom"
 import Card from "../layouts/Card"
 import Loading from "../layouts/Loading"
 function EditDados(){
-    const location=useLocation("")
+    const location=useLocation()
     const [nome,setNome]=useState(location.state?.nome ?? "")
     const [email,setEmail]=useState(location.state?.email ?? "")
     const [msg,setMsg]=useState("")
     const [tipo,setTipo]=useState("")
     const [display,setDisplay]=useState("none")
     const [permitir,setPermitir]=useState(false)
-    const navigate=useNavigate("")
+    const [cardId,setCardId]=useState(0)
+    const navigate=useNavigate()
     async function editar(){
         setDisplay("flex")
         await fetch("https://backend-crud-react.onrender.com/editDados",{
@@ -18,12 +19,18 @@ function EditDados(){
             headers:{
                 "Content-Type":"application/json",
                 authorization:"Bearer "+localStorage.getItem("token")
-            },body:JSON.stringify({nome,email,id:localStorage.getItem("id")})
+            },body:JSON.stringify({nome,email,id:localStorage.getItem("id_usuario")})
         }).then((response)=>response.json()).then((res)=>{
+            setCardId((e)=>e+1)
             setDisplay("none")
             setMsg(res.msg)
             setTipo(res.tipo)
+            if(res.tipo=="success"){
             setPermitir(true)
+            setTimeout(()=>{
+                setMsg("Redirecionando...")
+            },1500)
+        }
         })
     }
     function voltar(){
@@ -41,7 +48,7 @@ function EditDados(){
                 <button className="btn btn-success mt-3" onClick={voltar}>Voltar</button>
             </div>
             {msg&&msg!=""&&(
-                <Card tipo={tipo} msg={msg} caminho="/perfil" permitido={permitir}/>
+                <Card tipo={tipo} msg={msg} caminho="/perfil" permitido={permitir} key={cardId}/>
             )}
             <Loading sumir={display}/>
         </>
