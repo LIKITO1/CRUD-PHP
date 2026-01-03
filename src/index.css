@@ -1,0 +1,24 @@
+@media screen and (min-width:360px){
+    .form-control{
+        width:75dvw !important;
+    }
+    .btn{
+        width:35dvw !important;
+    }
+}
+@media screen and (min-width:576px) and (max-width:768px){
+   .form-control{
+        width:60vw !important;
+    }
+    .btn{
+        width:25dvw !important;
+    }
+}
+@media screen and (min-width:768px){
+    .form-control{
+        width:50dvw !important;
+    }
+    .btn{
+        width:25dvw !important;
+    }
+}

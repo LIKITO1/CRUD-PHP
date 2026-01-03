@@ -16,7 +16,7 @@ function Card({tipo,msg,caminho,permitido}){
     },[msg,permitido,caminho])
     return(
         <>
-            <div className={`${styles.card} border border-light rounded-5 position-absolute bg-dark w-75 h-25 text-${tipo} d-flex align-items-center justify-content-center d-${sumir}`}>{msg}</div>
+            <div className={`${styles.card} border border-light rounded-4 position-absolute bg-dark w-75 text-${tipo} text-center d-flex align-items-center justify-content-center d-${sumir}`}>{msg}</div>
         </>
     )
 }

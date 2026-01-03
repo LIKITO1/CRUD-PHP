@@ -13,6 +13,7 @@ import PrivateRoute from './components/routes/PrivateRoute.jsx'
 import EditDados from "./components/pages/EditDados.jsx"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "bootstrap-icons/font/bootstrap-icons.css";
+import "./index.css"
 import {BrowserRouter as Router,Routes,Route} from "react-router-dom"
 function NotFound(){
   return(

@@ -29,6 +29,13 @@ function FormUser({title,nomeBtn,acao,nomeE,emailE,senhaE,editTipoMsg,caminho,w,
         setTipoMsg("")
         if(acao=="criar"||acao=="cadastrar"){
             if(nome!=""&&senha!=""&&email!=""){
+                    setTimeout(()=>{
+                        setCardId((e)=>e+1)
+                        setMsg("A primeira tentativa do dia pode demorar. Aguarde...")
+                        setTipoMsg("light")
+                        setPermitir(false)
+                        setMostrarCard(true)
+                        },500)
         await fetch("https://backend-crud-react.onrender.com/create",{
             method:"POST",
             headers:{
