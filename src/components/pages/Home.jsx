@@ -1,8 +1,14 @@
 import Menu from "../layouts/Menu.jsx"
 import {useState,useEffect} from "react"
 import styles from "./Home.module.css"
+import Card from "../layouts/Card.jsx"
+import Loading from "../layouts/Loading.jsx"
 function Home(){
     const [user,setUser]=useState("")
+    const [msg,setMsg]=useState("")
+    const [tipo,setTipo]=useState("")
+    const [permitir,setPermitir]=useState(false)
+    const [display,setDisplay]=useState("flex")
     useEffect(()=>{
         async function requisitar(){
         await fetch("https://backend-crud-react.onrender.com/api",{
@@ -11,9 +17,18 @@ function Home(){
                 authorization:"Bearer "+localStorage.getItem("token")
             }
         }).then((response)=>response.json()).then((res)=>{
-            res.forEach((valor)=>{
+            if(res.dados==undefined){
+                setMsg(res.msg)
+                setTipo(res.tipo)
+                setTimeout(()=>{
+                    setMsg("Redirecionando...")
+                    setPermitir(true)
+                },1500)
+            }
+            res.dados.forEach((valor)=>{
                 if(valor.id==localStorage.getItem("id_usuario")){
                     setUser(valor.nome)
+                    setDisplay("none")
                 }
             })
         })
@@ -22,6 +37,10 @@ function Home(){
     },[])
     return(
         <>
+        {msg&&msg!=""&&(
+            <Card msg={msg} tipo={tipo} permitido={permitir} caminho="/"/>
+        )}
+        <Loading sumir={display}/>
         <Menu/>
             <div className="container d-flex align-items-center justify-content-center flex-column p-4">
                 <h3 className="mb-5 text-center">Bem Vindo à página principal,<span className="text-capitalize">{user}</span></h3>
