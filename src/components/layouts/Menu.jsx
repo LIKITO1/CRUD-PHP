@@ -15,10 +15,14 @@ function Menu({user}){
         <div className={`d-grid w-75 gap-2 m-4 text-center`}>
         <div className="row gap-2">
         <Link to={"/home"} className={`${styles.link} text-light bg-primary rounded-2 p-1 fs-6 col`}>Home</Link>
+        {user&&user=="admin"&&(
         <Link to={"/create"} className={`${styles.link} text-light bg-primary rounded-2 p-1 fs-6 col`}>Criar Usuário</Link>
+        )}
         </div>
-            <div className="row gap-2">
+        <div className="row gap-2">
+            {user&&user=="admin"&&(
         <Link to={"/list"} className={`${styles.link} text-light bg-primary rounded-2 p-1 fs-6 col`}>Listar Usuários</Link>
+            )}
         <Link to={"/perfil"} className={`${styles.link} text-light bg-primary rounded-2 p-1 fs-6 col`}>Perfil</Link>
         <span onClick={desconectar} className={`${styles.link} text-light bg-primary rounded-2 p-1 fs-6 col`}>Desconectar</span>
         </div>
@@ -31,11 +35,11 @@ function Menu({user}){
             </Link>
             {user&&user=="admin"&&(
             <>
-            <Link to={"/create"} className={`${styles.link} text-light text-center p-3 fs-5`}>
+            <Link to={"/create"} className={`${styles.link} text-light text-center fs-5`}>
             <div className="bi bi-plus-circle fs-1"></div>
             <small className={`${styles.texto}`}>Criar Usuário</small>
             </Link>
-            <Link to={"/list"} className={`${styles.link} text-light text-center p-3 fs-5`}>
+            <Link to={"/list"} className={`${styles.link} text-light text-center fs-5`}>
             <div className="bi bi-list-task fs-1"></div>
             <small className={`${styles.texto}`}>Listar usuários</small>
             </Link>

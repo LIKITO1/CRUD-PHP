@@ -64,7 +64,7 @@ function Perfil(){
             <p className="fs-4">Nome:{nome}</p>
             <p className="fs-4">Email:{email}</p>
             <p className="fs-4">Tipo de usuário:{tipo}</p>
-            <button onClick={editar} className="btn btn-success bi bi-pencil">&nbsp;Editar dados</button>
+            <button onClick={editar} className="btn btn-success bi bi-pencil p-1 p-sm-2">&nbsp;Editar dados</button>
         </div>
         </>
     )

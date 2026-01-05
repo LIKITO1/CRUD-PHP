@@ -35,10 +35,12 @@ function Listar(){
     },[])
     return(
         <>
+        {msg&&tipoMsg=="danger"&&(
+            <Card tipo={tipoMsg} msg={msg} permitido={permitir} caminho="/"/>
+        )}
         {dados.length==0&&(
             <>
             <Loading sumir={display}/>
-            <Card tipo={tipoMsg} msg={msg} permitido={permitir} caminho="/"/>
             </>
         )}
         <Menu/>
@@ -62,7 +64,7 @@ function Listar(){
                         <tr key={valor.id}>
                             <td>{valor.id}</td>
                             <td>{valor.nome}</td>
-                            <td>{valor.email}</td>
+                            <td className="text-truncate" style={{maxWidth:"10dvw"}}>{valor.email}</td>
                             <td>{valor.tipo}</td>
                             <td><Link to={`/edit/${valor.id}`}>Editar</Link></td>
                             <td><Link to={`/delete/${valor.id}`}>Apagar</Link></td>
