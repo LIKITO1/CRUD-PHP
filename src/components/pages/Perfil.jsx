@@ -29,7 +29,6 @@ function Perfil(){
                     authorization:"Bearer "+localStorage.getItem("token")
                 }
             }).then((response)=>response.json()).then((valor)=>{
-                setSumir("none")
                 if(valor.msg&&valor.tipo=="danger"){
                     setTipoMsg(valor.tipo)
                     setMsg(valor.msg)
@@ -39,6 +38,7 @@ function Perfil(){
                     },1500)
                     return ;
                 }
+                setSumir("none")
                 valor.dados.forEach((dados)=>{
                     if(dados.id==localStorage.getItem("id_usuario")){
                         setNome(dados.nome)

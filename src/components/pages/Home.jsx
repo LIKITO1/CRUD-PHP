@@ -25,7 +25,7 @@ function Home(){
                     setPermitir(true)
                 },1500)
             }
-            res.dados.forEach((valor)=>{
+            res.dados?.forEach((valor)=>{
                 if(valor.id==localStorage.getItem("id_usuario")){
                     setUser(valor.nome)
                     setDisplay("none")
@@ -37,10 +37,12 @@ function Home(){
     },[])
     return(
         <>
+        <Loading sumir={display}/>
         {msg&&msg!=""&&(
             <Card msg={msg} tipo={tipo} permitido={permitir} caminho="/"/>
         )}
-        <Loading sumir={display}/>
+        {tipo!="danger"&&tipo!=""&&(
+            <>
         <Menu/>
             <div className="container d-flex align-items-center justify-content-center flex-column p-4">
                 <h3 className="mb-5 text-center">Bem Vindo à página principal,<span className="text-capitalize">{user}</span></h3>
@@ -54,6 +56,8 @@ function Home(){
                 <p className={`w-100 text-center ${styles.texto}`}>Cada usuário possui acesso apenas às funcionalidades permitidas para o seu perfil, garantindo privacidade, organização e confiabilidade em todas as operações.Caso tenha dúvidas ou precise de suporte, fique à vontade para entrar em contato.
                 Esperamos que sua experiência seja produtiva e agradável.</p>
             </div>
+            </>
+        )}
         </>
     )
 }

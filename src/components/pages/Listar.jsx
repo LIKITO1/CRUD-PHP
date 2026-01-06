@@ -35,14 +35,16 @@ function Listar(){
     },[])
     return(
         <>
-        {msg&&tipoMsg=="danger"&&(
-            <Card tipo={tipoMsg} msg={msg} permitido={permitir} caminho="/"/>
-        )}
         {dados.length==0&&(
             <>
             <Loading sumir={display}/>
             </>
         )}
+                {msg&&tipoMsg=="danger"&&(
+            <Card tipo={tipoMsg} msg={msg} permitido={permitir} caminho="/"/>
+        )}
+        {tipoMsg!="danger"&&tipoMsg!=""&&(
+            <>
         <Menu/>
         <h2 className='w-100 text-center mt-3'>Listar Usuários</h2>
         <div className="w-100 d-flex align-items-center justify-content-center table-responsive">
@@ -78,6 +80,8 @@ function Listar(){
                 <h3 className="mt-5">Sem usuários cadastrados</h3>
             )}
             </div>
+            </>
+        )}
         </>
     )
 }

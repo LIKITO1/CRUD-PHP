@@ -2,7 +2,7 @@ import {useState,useEffect} from "react"
 import {useParams} from "react-router-dom"
 import Card from "../layouts/Card"
 import Loading from "../layouts/Loading"
-function FormUser({title,nomeBtn,acao,nomeE,emailE,senhaE,editTipoMsg,caminho,w,dispT}){
+function Form({title,nomeBtn,acao,nomeE,emailE,senhaE,editTipoMsg,caminho,w,dispT}){
     const {id}=useParams()
     const [nome,setNome]=useState("")
     const [email,setEmail]=useState("")
@@ -129,4 +129,4 @@ function FormUser({title,nomeBtn,acao,nomeE,emailE,senhaE,editTipoMsg,caminho,w,
         </>
             )
 }
-export default FormUser
+export default Form
