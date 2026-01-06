@@ -39,7 +39,7 @@ function EditDados(){
     return(
         <>
             <div className="position-absolute text-light w-100 h-100 d-flex align-items-center justify-content-center flex-column bg-dark">
-                <h2 className="mb-5">Editar Dados</h2>
+                <h2 className="mb-5 display-4">Editar Dados</h2>
                 <label className="mb-2">Nome:</label>
                 <input type="text" placeholder="Nome..." className="form-control w-50" onChange={(e)=>setNome(e.target.value)} value={nome}/>
                 <label className="mt-3 mb-2">Email:</label>

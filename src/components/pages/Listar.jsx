@@ -7,7 +7,7 @@ function Listar(){
     const [dados,setDados]=useState([])
     const [display,setDisplay]=useState("block")
     const [msg,setMsg]=useState("")
-    const [tipoMsg,setTipoMsg]=useState("")
+    const [tipoMsg,setTipoMsg]=useState("inicial")
     const [permitir,setPermitir]=useState(false)
     async function requisitar(){
         await fetch("https://backend-crud-react.onrender.com/api",{

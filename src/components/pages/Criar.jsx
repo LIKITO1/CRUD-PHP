@@ -5,7 +5,7 @@ import Loading from "../layouts/Loading.jsx"
 import {useState,useEffect} from "react"
 function Criar(){
     const [msg,setMsg]=useState("")
-    const [tipoMsg,setTipoMsg]=useState("")
+    const [tipoMsg,setTipoMsg]=useState("inicial")
     const [cardId,setCardId]=useState(0)
     const [display,setDisplay]=useState("none")
     const [permitir,setPermitir]=useState(false)

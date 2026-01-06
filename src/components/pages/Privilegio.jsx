@@ -30,7 +30,7 @@ function Privilegio(){
     return(
         <div className={`position-absolute w-100 h-100 bg-dark text-${tipo} flex-column d-flex align-items-center justify-content-center`}>
             <Loading sumir={display}/>
-            <h2>{msg}</h2>
+            <h2 className="display-4">{msg}</h2>
             <button onClick={voltar} className="btn btn-success mt-3">Voltar</button>
         </div>
     )

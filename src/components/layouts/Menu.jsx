@@ -21,10 +21,10 @@ function Menu({user}){
         </div>
         <div className="row gap-2">
             {user&&user=="admin"&&(
-        <Link to={"/list"} className={`${styles.link} text-light bg-primary rounded-2 p-1 fs-6 col`}>Listar Usuários</Link>
+        <Link to={"/list"} className={`${styles.link} text-light bg-primary rounded-2 p-1 fs-6 col d-flex align-items-center justify-content-center`}>Listar Usuários</Link>
             )}
-        <Link to={"/perfil"} className={`${styles.link} text-light bg-primary rounded-2 p-1 fs-6 col`}>Perfil</Link>
-        <span onClick={desconectar} className={`${styles.link} text-light bg-primary rounded-2 p-1 fs-6 col`}>Desconectar</span>
+        <Link to={"/perfil"} className={`${styles.link} text-light bg-primary rounded-2 p-1 fs-6 col d-flex align-items-center justify-content-center`}>Perfil</Link>
+        <span onClick={desconectar} className={`${styles.link} text-light bg-primary rounded-2 p-1 fs-6 col d-flex align-items-center justify-content-center`}>Desconectar</span>
         </div>
         </div>
         </div>

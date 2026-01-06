@@ -6,7 +6,7 @@ import Loading from "../layouts/Loading.jsx"
 function Home(){
     const [user,setUser]=useState("")
     const [msg,setMsg]=useState("")
-    const [tipo,setTipo]=useState("")
+    const [tipo,setTipo]=useState("inicial")
     const [permitir,setPermitir]=useState(false)
     const [display,setDisplay]=useState("flex")
     useEffect(()=>{
